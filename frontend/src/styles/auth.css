@@ -1,0 +1,331 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
+
+:root {
+  --bg-main: #f0f4f8;
+  --card-bg: rgba(255, 255, 255, 0.7);
+  --text-main: #1a1f36;
+  --text-muted: #697386;
+  --accent: #4f46e5;
+  --accent-glow: rgba(79, 70, 229, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --input-border: #e3e8ee;
+}
+
+[data-theme='dark'] {
+  --bg-main: #0a0d14;
+  --card-bg: rgba(19, 23, 32, 0.8);
+  --text-main: #ffffff;
+  --text-muted: #94a3b8;
+  --accent: #6366f1;
+  --accent-glow: rgba(99, 102, 241, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.05);
+  --input-border: #2d3748;
+}
+
+.auth-wrapper {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-main);
+  overflow: hidden;
+  position: relative;
+}
+
+/* --- Premium Mesh Bubbles --- */
+.bubble {
+  position: absolute;
+  filter: blur(80px);
+  z-index: 1;
+  opacity: 0.5;
+  border-radius: 50%;
+  animation: floatMove 20s infinite alternate;
+}
+
+.bubble-1 { width: 400px; height: 400px; background: #6871c8; top: -10%; left: -10%; }
+.bubble-2 { width: 350px; height: 350px; background: #6871c8; bottom: -5%; right: -5%; animation-delay: -5s; }
+.bubble-3 { width: 300px; height: 300px; background: #6871c8; top: 40%; right: 15%; }
+
+@keyframes floatMove {
+  from { transform: translate(0, 0); }
+  to { transform: translate(100px, 50px); }
+}
+
+/* --- Container --- */
+.auth-container {
+  width: 1040px;
+  height: 650px;
+  display: flex;
+  background: var(--card-bg);
+  backdrop-filter: blur(40px);
+  border: 1px solid var(--glass-border);
+  border-radius: 40px;
+  z-index: 10;
+  box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.15), 0 30px 60px -30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+/* --- Left Panel --- */
+.left-panel { flex: 1; padding: 60px; display: flex; flex-direction: column; }
+
+.welcome-text { font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); font-weight: 700; margin: 0; }
+
+.logo-wrapper { display: flex; align-items: center; gap: 8px; margin-bottom: 40px; margin-top: 5px; }
+.logo-text { font-size: 32px; font-weight: 800; background: linear-gradient(90deg, var(--accent), #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.logo-dot { width: 8px; height: 8px; background: #a855f7; border-radius: 50%; margin-top: 10px; }
+
+.input-group { margin-bottom: 24px; position: relative; }
+.input-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 8px; color: var(--text-main); }
+.input-group input {
+  width: 92%; padding: 14px 18px; border-radius: 12px; border: 1px solid var(--input-border);
+  background: rgba(255, 255, 255, 0.05); color: var(--text-main); transition: 0.3s ease;
+}
+.input-group input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-glow); }
+
+.forgot-link { position: absolute; right: 0; bottom: -20px; font-size: 12px; color: var(--accent); text-decoration: none; font-weight: 600; }
+
+.btn-primary-glow {
+  width: 100%; padding: 16px; margin-top: 20px; background: var(--accent); color: white; border: none;
+  border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.3s;
+  box-shadow: 0 10px 20px -5px var(--accent-glow);
+}
+.btn-primary-glow:hover { transform: translateY(-2px); filter: brightness(1.1); }
+.btn-primary-glow:disabled { opacity: 0.7; cursor: not-allowed; }
+
+/* --- Social Icons --- */
+.social-grid { 
+  display: flex; 
+  gap: 12px; 
+  margin-top: 15px; 
+}
+
+.social-card {
+  flex: 1; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  gap: 10px;
+  padding: 12px; 
+  border-radius: 12px; 
+  border: 1px solid var(--input-border);
+  background: transparent; 
+  cursor: pointer; 
+  color: var(--text-main); 
+  font-weight: 600; 
+  transition: 0.2s;
+}
+
+.social-card img { width: 20px; }
+.social-card:hover { background: rgba(0, 0, 0, 0.05); }
+
+.auth-divider { text-align: center; margin: 30px 0; position: relative; }
+.auth-divider::before { content: ""; position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: var(--input-border); z-index: 1; }
+.auth-divider span { position: relative; z-index: 2; background: var(--card-bg); padding: 0 15px; color: var(--text-muted); font-size: 12px; }
+
+/* --- Signup Prompt --- */
+.signup-prompt {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.signup-prompt span {
+  color: var(--accent);
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.signup-prompt span:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* --- Right Panel --- */
+.right-panel {
+  flex: 1; 
+  background: #4f46e5; 
+  position: relative; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  padding: 60px; 
+  color: white;
+  overflow: hidden;
+}
+
+.right-panel-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(8px);
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.mesh-gradient-overlay {
+  position: absolute; 
+  inset: 0; 
+  opacity: 0.6;
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.8) 0%, rgba(168, 85, 247, 0.8) 100%);
+  z-index: 2;
+}
+
+.right-content { 
+  position: relative; 
+  z-index: 3;
+  text-align: center; 
+}
+
+.floating-icon { 
+  font-size: 50px; 
+  margin-bottom: 20px; 
+  animation: bounce 3s infinite ease-in-out; 
+}
+
+.right-content h1 { 
+  font-size: 48px; 
+  font-weight: 900; 
+  margin-bottom: 10px; 
+}
+
+.right-content p { 
+  font-size: 18px; 
+  opacity: 0.8; 
+  line-height: 1.6; 
+}
+
+.stat-pill {
+  display: inline-block; 
+  margin-top: 30px; 
+  padding: 8px 20px; 
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px); 
+  border-radius: 100px; 
+  font-size: 13px; 
+  font-weight: 600; 
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@keyframes bounce { 
+  0%, 100% { transform: translateY(0); } 
+  50% { transform: translateY(-15px); } 
+}
+
+.theme-toggle {
+  position: absolute; 
+  top: 20%; 
+  right: 52%; 
+  z-index: 100; 
+  padding: 10px; 
+  border-radius: 12px;
+  background: var(--card-bg); 
+  border: 1px solid var(--glass-border); 
+  cursor: pointer; 
+  font-size: 20px;
+}
+
+/* ============================================ */
+/* REGISTRATION PAGE ONLY STYLES */
+/* ============================================ */
+
+/* Password wrapper for eye toggle */
+.auth-form{
+  margin-bottom: 1rem;
+}
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 5px;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.password-toggle:hover {
+  opacity: 0.8;
+}
+
+/* Error text styling */
+.error-text {
+  display: block;
+  color: #ef4444;
+  font-size: 11px;
+  margin-top: 5px;
+  font-weight: 600;
+}
+
+/* Submit error box */
+.submit-error {
+  padding: 12px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid #ef4444;
+  border-radius: 10px;
+  color: #ef4444;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Dark mode error adjustments */
+[data-theme='dark'] .submit-error {
+  background: rgba(239, 68, 68, 0.15);
+}
+
+/* Dark mode text fixes */
+[data-theme='dark'] .signup-prompt {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+[data-theme='dark'] .signup-prompt span {
+  color: #a78bfa;
+}
+
+[data-theme='dark'] .input-group input {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='dark'] .input-group input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+[data-theme='dark'] .input-group label {
+  color: #ffffff;
+}
+
+[data-theme='dark'] .forgot-link {
+  color: #a78bfa;
+}
+
+[data-theme='dark'] .social-card {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme='dark'] .social-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='dark'] .auth-divider span {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme='dark'] .welcome-text {
+  color: rgba(255, 255, 255, 0.8);
+}
