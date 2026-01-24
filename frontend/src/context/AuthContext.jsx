@@ -6,18 +6,18 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
-  // 1. Initialize user state from local storage immediately (for persistence)
+
   const [user, setUser] = useState(() => {
     const savedUser = localStorage.getItem('user');
     return savedUser ? JSON.parse(savedUser) : null;
   });
 
-  // 2. Sync user and loading state
+
   useEffect(() => {
-    // If the user is already loaded from storage, just mark loading as false
+
     if (user) {
         setLoading(false);
-        // Optional: Re-fetch profile to ensure token is still valid
+
         const checkTokenValidity = async () => {
             try {
                 await api.get('authentication/profile/');
@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
         };
         checkTokenValidity();
     } else {
-        // If no user in storage, stop loading state
+
         setLoading(false);
     }
   }, [user]);
@@ -46,9 +46,9 @@ export const AuthProvider = ({ children }) => {
       const userData = profileRes.data;
       
       setUser(userData);
-      localStorage.setItem('user', JSON.stringify(userData)); // Save the full object
+      localStorage.setItem('user', JSON.stringify(userData));
       
-      // FIX: Save admin status separately for public access on HomePage
+
       localStorage.setItem('is_admin', userData.is_superuser); 
       
       return { success: true };
@@ -67,14 +67,14 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem('refresh_token', tokens.refresh);
       
       setUser(newUser);
-      localStorage.setItem('user', JSON.stringify(newUser)); // Save the full object
+      localStorage.setItem('user', JSON.stringify(newUser));
       
-      // FIX: Save admin status separately
+
       localStorage.setItem('is_admin', newUser.is_superuser);
       
       return { success: true };
     } catch (error) {
-      // Extract error message safely
+
       let msg = "Registration failed";
       if (error.response?.data) {
         const values = Object.values(error.response.data);
@@ -90,7 +90,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
     localStorage.removeItem('user');
-    localStorage.removeItem('is_admin'); // Clean up admin flag
+    localStorage.removeItem('is_admin'); 
   };
 
   // Update Profile (with Image)

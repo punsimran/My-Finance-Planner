@@ -1,0 +1,11 @@
+admin
+
+- Email: admin@gmail.com
+- Password: qwerty12345@
+- Username: admin 
+
+
+User:
+
+- email : testing@gmail.com
+- password : qwerty12345#

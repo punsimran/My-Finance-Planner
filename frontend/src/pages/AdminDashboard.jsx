@@ -4,10 +4,10 @@ import {
     Loader2, 
     Edit, 
     Trash2, 
-    CheckCircle,    // ADDED
-    XCircle,        // ADDED
-    LayoutDashboard, // ADDED
-    UserCheck       // ADDED
+    CheckCircle,    
+    XCircle,        
+    LayoutDashboard, 
+    UserCheck       
 } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import api from '../services/api'; 
@@ -18,7 +18,7 @@ const AdminDashboard = () => {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-    const [currentUser, setCurrentUser] = useState(null); // User currently being edited
+    const [currentUser, setCurrentUser] = useState(null); 
 
     const theme = {
         card: isDarkMode ? "bg-[#1e293b] border-slate-700" : "bg-white border-slate-200",
@@ -144,7 +144,7 @@ const AdminDashboard = () => {
                                             >
                                                 <Edit size={16} />
                                             </button>
-                                            {!u.is_superuser && ( // Cannot delete self/superuser
+                                            {!u.is_superuser && ( 
                                                 <button 
                                                     onClick={() => handleDeleteUser(u.id, u.username)}
                                                     className="text-rose-500 hover:text-rose-700"

@@ -3,9 +3,9 @@ import { Plus, Target, X, Check, ListMinus, TrendingUp, AlertTriangle, Trash2, E
 import { useTheme } from '../context/ThemeContext';
 import { useTransactions } from '../context/TransactionContext';
 import toast from 'react-hot-toast';
-import api from '../services/api'; // Ensure API is imported for manual PUT request
+import api from '../services/api';
 
-// Available categories for setting limits
+
 const AVAILABLE_LIMIT_CATEGORIES = [
     { id: 'Food', icon: Utensils },
     { id: 'Shopping', icon: ShoppingBag },
@@ -222,7 +222,6 @@ const Budget = () => {
     };
 
     
-    // --- EFFECT: Fetch prediction whenever modal data changes (category/month) ---
     useEffect(() => {
         // Only run for NEW limits and when modal is open
         if (isLimitModalOpen && !currentLimitData.id) { 

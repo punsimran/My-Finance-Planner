@@ -78,7 +78,7 @@ const Transactions = () => {
       toast.error("Failed to import CSV. Check file format (description,amount,category,date,type).", { id: loadingToast });
     }
     
-    e.target.value = null; // Clear file input
+    e.target.value = null;
   };
 
 
@@ -126,7 +126,7 @@ const Transactions = () => {
                 >
                     <Upload size={16} /> <span className="hidden sm:inline">Import CSV</span>
                 </button>
-                {/* Hidden Input for Import */}
+
                 <input 
                     type="file" 
                     ref={fileInputRef} 

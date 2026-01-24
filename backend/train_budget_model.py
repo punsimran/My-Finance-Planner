@@ -7,20 +7,17 @@ import joblib
 import numpy as np
 from datetime import date
 
-# --- Configuration ---
 
-# Determine the absolute path to the directory containing this script (backend/)
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# Define the path where the ML artifacts will be saved (backend/ml_models)
 ML_DIR = os.path.join(BASE_DIR, 'ml_models')
 os.makedirs(ML_DIR, exist_ok=True)
 
 MODEL_PATH = os.path.join(ML_DIR, 'budget_regressor.pkl')
 ENCODER_PATH = os.path.join(ML_DIR, 'category_encoder.joblib')
 
-# Define paths for the training data CSV (assuming it's named 'personal_transactions_dashboard_ready.csv'
-# and located next to this script in the backend/ directory)
+
 CSV_PATH = os.path.join(BASE_DIR, 'personal_transactions_dashboard_ready.csv') 
 
 
@@ -123,6 +120,5 @@ def generate_and_train_budget_model():
 
 
 if __name__ == '__main__':
-    # Ensure this script is run from the 'backend' folder
-    # If it is run via `python train_budget_model.py`, os.getcwd() should be the 'backend' folder.
+
     generate_and_train_budget_model()

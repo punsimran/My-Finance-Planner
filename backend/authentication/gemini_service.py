@@ -1,11 +1,10 @@
-# backend/authentication/gemini_service.py
 import os
 import json
 from google import genai
 from django.conf import settings
 from rest_framework import status
 
-# Initialize client using Django settings/environment variable
+
 try:
     client = genai.Client(api_key=os.environ.get('GEMINI_API_KEY'))
 except Exception as e:

@@ -3,7 +3,7 @@ import {
   Mail, Phone, MapPin, Send, MessageSquare, CheckCircle2, AlertCircle, HelpCircle 
 } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
-// import emailjs from '@emailjs/browser'; // Uncomment when you have keys
+
 
 const Support = () => {
   const { isDarkMode } = useTheme();
@@ -25,24 +25,6 @@ const Support = () => {
     setLoading(true);
     setStatus(null);
 
-    // --- OPTION 1: REAL EMAIL SENDING (Uncomment & Add Keys) ---
-    /*
-    emailjs.sendForm(
-      'YOUR_SERVICE_ID', 
-      'YOUR_TEMPLATE_ID', 
-      formRef.current, 
-      'YOUR_PUBLIC_KEY'
-    ).then((result) => {
-        setLoading(false);
-        setStatus('success');
-        e.target.reset();
-    }, (error) => {
-        setLoading(false);
-        setStatus('error');
-    });
-    */
-
-    // --- OPTION 2: SIMULATION (For UI Testing) ---
     setTimeout(() => {
       setLoading(false);
       setStatus('success');

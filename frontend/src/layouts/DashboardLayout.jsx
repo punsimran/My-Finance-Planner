@@ -15,10 +15,13 @@ import {
   List,
   Wallet,
   Sparkles,
-  Users // Admin icon
+  Users
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
+
+import logo from '../assets/logo.png'
+const logoImg = logo;
 
 const DashboardLayout = () => {
   const { user, logout } = useAuth();
@@ -26,8 +29,7 @@ const DashboardLayout = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  
-  // Base flag to check if the current layout is being used for the /admin/* routes
+
   const isViewingAdminSection = location.pathname.startsWith('/admin');
 
   const handleLogout = () => {
@@ -36,7 +38,6 @@ const DashboardLayout = () => {
   };
 
   const theme = {
-    // ... (theme definitions)
     bg: isDarkMode ? "bg-[#0f172a]" : "bg-[#f8fafc]",
     sidebar: isDarkMode ? "bg-[#1e293b] border-slate-700" : "bg-white border-slate-200",
     text: isDarkMode ? "text-slate-100" : "text-slate-900",
@@ -49,7 +50,6 @@ const DashboardLayout = () => {
   
   const isSuperuser = user?.is_superuser;
 
-  // --- DYNAMIC NAVIGATION ITEMS (FIXED LOGIC) ---
   const navItems = useMemo(() => {
     const userFinancialLinks = [
       { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
@@ -61,32 +61,24 @@ const DashboardLayout = () => {
     ];
     
     const adminManagementLinks = [
-      { icon: Users, label: 'User Management', path: '/admin' }, // User List is the Admin root
-      // Admin should still see their own settings, but not the full financial dashboard
-      // { icon: Settings, label: 'Admin Settings', path: '/dashboard/settings' }, 
+      { icon: Users, label: 'User Management', path: '/admin' }, 
+      { icon: Settings, label: 'Settings', path: '/dashboard/settings' },
     ];
     
-    // If the user is currently in the Admin section, show only Admin links.
     if (isSuperuser && isViewingAdminSection) {
       return adminManagementLinks;
     }
     
-    // Default: Show the standard user links.
     return userFinancialLinks;
-
   }, [isSuperuser, isViewingAdminSection]); 
 
-  // Helper to determine the current link's active state
   const isCurrentPathActive = (path) => {
-    // Handle the complex Admin path matching (base /admin or nested /admin/user/:id)
     if (path === '/admin') {
       return location.pathname === '/admin' || location.pathname.startsWith('/admin/user/');
     }
-    // Handle the general dashboard links
     return location.pathname.startsWith(path);
   };
   
-  // Helper to get the clean header title
   const getHeaderTitle = () => {
     if (location.pathname === '/admin') return 'Admin Panel';
     if (location.pathname.startsWith('/admin/user/')) return 'User Detail';
@@ -96,7 +88,6 @@ const DashboardLayout = () => {
     
     return pathSegment.charAt(0).toUpperCase() + pathSegment.slice(1);
   };
-
 
   const getProfileImage = () => {
     if (user?.profile_picture) {
@@ -112,7 +103,6 @@ const DashboardLayout = () => {
   return (
     <div className={`min-h-screen flex ${theme.bg} ${theme.text} font-sans transition-colors duration-300`}>
       
-      {/* --- MOBILE OVERLAY --- */}
       {isSidebarOpen && (
         <div 
           className="fixed inset-0 bg-black/50 z-40 lg:hidden"
@@ -129,10 +119,14 @@ const DashboardLayout = () => {
         ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
       `}>
         
-        {/* Logo */}
+        {/* --- ACTUAL LOGO SECTION (UPDATED) --- */}
         <div className="h-20 flex items-center px-8 border-b border-transparent cursor-pointer" onClick={() => navigate('/')}>
-           <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-md mr-3">F</div>
-           <span className="text-xl font-bold tracking-tight">Finotic</span>
+           <img 
+             src={logoImg} 
+             alt="Fyno Logo" 
+             className="h-20 w-auto object-contain"
+             style={{ filter: isDarkMode ? 'brightness(0) invert(1)' : 'none' }}
+           />
         </div>
 
         {/* Navigation Links */}
@@ -156,9 +150,8 @@ const DashboardLayout = () => {
           ))}
         </nav>
 
-        {/* Sidebar Footer (Support & Logout) */}
+        {/* Sidebar Footer */}
         <div className="p-4 border-t border-slate-100 dark:border-slate-800 space-y-2">
-           {/* Only show Support if it's the standard user view */}
            {!isViewingAdminSection && (
              <button 
                onClick={() => {
@@ -190,19 +183,16 @@ const DashboardLayout = () => {
         {/* Top Header (STICKY) */}
         <header className={`h-20 flex items-center justify-between px-4 lg:px-8 border-b sticky top-0 z-30 backdrop-blur-sm bg-opacity-95 ${theme.sidebar}`}>
            <div className="flex items-center gap-4">
-              {/* Mobile Menu Toggle */}
               <button onClick={() => setIsSidebarOpen(true)} className="lg:hidden p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
                  <Menu size={24} />
               </button>
               
-              {/* Page Title */}
               <h2 className="text-xl font-bold hidden sm:block">
                 {getHeaderTitle()}
               </h2>
            </div>
 
            <div className="flex items-center gap-3 sm:gap-4">
-              {/* Search Bar */}
               <div className={`hidden sm:flex items-center px-3 py-2 rounded-lg border ${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-slate-50 border-slate-200'}`}>
                  <Search size={16} className="text-slate-400 mr-2" />
                  <input 
@@ -212,7 +202,6 @@ const DashboardLayout = () => {
                  />
               </div>
 
-              {/* Theme Toggle */}
               <button 
                 onClick={() => setIsDarkMode(!isDarkMode)} 
                 className={`p-2 rounded-full border ${isDarkMode ? 'bg-slate-800 border-slate-700 text-yellow-400' : 'bg-white border-slate-200 text-slate-500 hover:bg-slate-50'}`}
@@ -222,13 +211,11 @@ const DashboardLayout = () => {
 
               <div className="h-8 w-px bg-slate-200 dark:bg-slate-700 mx-1"></div>
 
-              {/* Profile Section */}
               <div className="flex items-center gap-3">
                  <div className="text-right hidden md:block">
                     <p className="text-sm font-bold leading-none">{user?.first_name || user?.username || 'User'}</p>
                     <p className="text-xs text-slate-500 mt-0.5">{user?.is_superuser ? 'Admin' : 'Free Plan'}</p>
                  </div>
-                 {/* Updated Image Source Logic */}
                  <img 
                    src={getProfileImage()} 
                    alt="Profile" 
@@ -238,7 +225,6 @@ const DashboardLayout = () => {
            </div>
         </header>
 
-        {/* Scrollable Content */}
         <div className="flex-1 overflow-auto p-4 lg:p-8">
            <Outlet /> 
         </div>

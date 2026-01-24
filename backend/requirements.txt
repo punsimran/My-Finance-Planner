@@ -1,0 +1,16 @@
+Django~=4.2.0
+djangorestframework~=3.14
+djangorestframework-simplejwt~=5.3
+django-cors-headers~=4.3
+python-dotenv~=1.0
+
+# Database
+psycopg2-binary
+
+# ML/AI Packages
+pandas~=2.1
+numpy~=1.26
+scikit-learn~=1.3
+joblib~=1.3
+google-genai~=0.1
+Pillow~=10.0

@@ -8,7 +8,7 @@ export const TransactionProvider = ({ children }) => {
   const { user } = useAuth();
   const [transactions, setTransactions] = useState([]);
   const [goals, setGoals] = useState([]);
-  const [limits, setLimits] = useState([]); // State for spending limits
+  const [limits, setLimits] = useState([]);
   const [loading, setLoading] = useState(false);
 
   // --- FETCHERS ---

@@ -37,7 +37,7 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
 
-    // FIX 1: Declare loadingToast outside the try block
+  
     let loadingToast;
     
     try {
@@ -49,7 +49,7 @@ const Login = () => {
       // Login returns { success: bool }
       const result = await login(formData.email, formData.password); 
       
-      // FIX 2: Check admin status from local storage right after login
+ 
       const isAdmin = localStorage.getItem('is_admin') === 'true';
 
       toast.dismiss(loadingToast);
@@ -63,7 +63,7 @@ const Login = () => {
           { id: loadingToast, duration: 2000 }
         );
         
-        // FIX 3: Conditional Redirect logic
+
         if (isAdmin) {
              navigate('/admin'); // Admin goes to /admin
         } else {

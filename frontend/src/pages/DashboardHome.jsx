@@ -16,8 +16,7 @@ const DashboardHome = () => {
   const navigate = useNavigate();
   const { isDarkMode } = useTheme();
   
-  // --- REAL DATA FROM CONTEXT ---
-  // Get limits and goals now
+
   const { transactions, addTransaction, goals, limits, fetchGoals } = useTransactions(); 
   
   const [chartFilter, setChartFilter] = useState('monthly'); // 'weekly' | 'monthly' | 'yearly'
@@ -376,7 +375,6 @@ const DashboardHome = () => {
               </button>
            </div>
 
-           {/* Simple Budget Visual (UPDATED SECTION) */}
            <div className={`p-6 rounded-2xl border shadow-sm ${theme.card}`}>
               <div className="flex justify-between items-center mb-4">
                  <h3 className={`font-bold text-lg ${theme.textMain}`}>Monthly Budget</h3>

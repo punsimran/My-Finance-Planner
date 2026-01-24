@@ -20,22 +20,22 @@ import {
 import { useTheme } from '../context/ThemeContext';
 import { useAuth } from '../context/AuthContext';
 
-// Import assets (Note: Replace these with your actual paths/placeholders)
 import user1 from '../assets/users/user1.jpeg';
 import user2 from '../assets/users/user2.jpeg';
 import user3 from '../assets/users/user3.jpeg';
-const logoImg = "https://placehold.co/160x50/2563eb/white?text=FinTrack&font=montserrat";
+import logo from  '../assets/logo.png';
+
+const logoImg = logo;
 
 
 const HomePage = () => {
   const navigate = useNavigate();
   const { isDarkMode, setIsDarkMode } = useTheme();
-  const { user } = useAuth(); // User object contains auth status
+  const { user } = useAuth(); 
   
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // FIX: Determine user's role and destination dynamically
-  // Read is_admin flag from local storage (set during login/register)
+ 
   const isAdmin = localStorage.getItem('is_admin') === 'true';
   const dashboardPath = isAdmin ? '/admin' : '/dashboard';
   const ctaDestination = user ? dashboardPath : '/register';
@@ -74,7 +74,7 @@ const HomePage = () => {
               <img 
                 src={logoImg} 
                 alt="FinTrack Logo" 
-                className="h-10 w-auto object-contain" 
+                className="h-45 w-auto object-contain" 
                 style={{ filter: isDarkMode ? 'brightness(0) invert(1)' : 'none' }}
               />
             </div>

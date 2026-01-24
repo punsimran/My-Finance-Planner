@@ -24,7 +24,6 @@ const processQueue = (error, token = null) => {
   failedQueue = [];
 };
 
-// 1. Request Interceptor (Attach Access Token) - (No change here)
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('access_token');

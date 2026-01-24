@@ -1,12 +1,10 @@
-# backend/transactions/urls.py
-
 from django.urls import path
 from .views import (
     TransactionListCreateView, 
     TransactionBulkUploadView, 
     GoalListCreateView, 
     GoalRetrieveUpdateDestroyView,
-    BudgetLimitListCreateView, # Add BudgetLimit views
+    BudgetLimitListCreateView,
     BudgetLimitRetrieveUpdateDestroyView
 )
 

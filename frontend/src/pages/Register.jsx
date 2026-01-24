@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { User, Mail, Lock, Eye, EyeOff, Sun, Moon, ArrowRight, ShieldCheck, TrendingUp } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
-import { useAuth } from '../context/AuthContext'; // 1. Import Auth
+import { useAuth } from '../context/AuthContext'; 
 
 const Register = () => {
   const navigate = useNavigate();
   const { isDarkMode, setIsDarkMode } = useTheme();
-  const { register } = useAuth(); // 2. Get register function
+  const { register } = useAuth(); 
 
-  // 3. CHANGED: State matches Django requirements
+
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -19,7 +19,7 @@ const Register = () => {
   
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(''); // Added Error state
+  const [error, setError] = useState('');
 
   const theme = {
     bg: isDarkMode ? "bg-[#0f172a]" : "bg-slate-50",

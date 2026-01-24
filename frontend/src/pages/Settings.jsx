@@ -3,7 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import { User, Lock, Camera, Check, Mail, Save } from 'lucide-react';
 import toast from 'react-hot-toast';
-import api from '../services/api'; // Import API helper
+import api from '../services/api';
 
 const Settings = () => {
   const { user, updateProfile } = useAuth();

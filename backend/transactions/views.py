@@ -61,15 +61,13 @@ class BudgetLimitListCreateView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        # You might want to filter this by the current month/year in a real app, 
-        # but for simplicity, we return all active limits.
         return BudgetLimit.objects.filter(user=user)
 
     def perform_create(self, serializer):
         # When creating, automatically set the user
         serializer.save(user=self.request.user)
 
-# Used for fetching a single limit for update (optional)
+
 class BudgetLimitRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = BudgetLimitSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -104,8 +102,6 @@ class TransactionListCreateView(generics.ListCreateAPIView):
                         goal.saved_amount += amount
                         goal.save()
                     elif tx_type == 'expense' and transaction.category.lower() == 'savings':
-                         # Optional: If you use a special 'Savings' category for withdrawals
-                         # goal.saved_amount -= amount
                          pass
                          
                 except Goal.DoesNotExist:

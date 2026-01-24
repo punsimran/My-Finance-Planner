@@ -25,14 +25,14 @@ import AdminRoute from './components/AdminRoute';
 function App() {
   return (
       <Router>
-        {/* Global Toaster Configuration */}
+\
         <Toaster 
           position="top-center" 
           reverseOrder={false}
           toastOptions={{
             duration: 5000, 
             style: {
-              background: '#334155', // Dark slate background
+              background: '#334155',
               color: '#fff',
               padding: '16px',
               borderRadius: '12px',
@@ -42,7 +42,7 @@ function App() {
             },
             success: {
               style: {
-                background: '#065f46', // Dark green for success
+                background: '#065f46', 
                 border: '1px solid #059669',
               },
               iconTheme: {
@@ -53,7 +53,7 @@ function App() {
             error: {
               duration: 8000, 
               style: {
-                background: '#7f1d1d', // Dark red for error
+                background: '#7f1d1d',
                 border: '1px solid #b91c1c',
               },
               iconTheme: {
@@ -70,8 +70,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           
-          {/* USER DASHBOARD ROUTES (Protected by PrivateRoute) */}
-          {/* Note: Admin users can also access this general dashboard path */}
+
           <Route path="/dashboard" element={<PrivateRoute><DashboardLayout /></PrivateRoute>}>
             <Route index element={<DashboardHome />} />
             <Route path="stats" element={<Statistics />} />
@@ -83,14 +82,13 @@ function App() {
             <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </Route>
 
-          {/* ADMIN DASHBOARD ROUTES (Protected by AdminRoute - Superuser Only) */}
           <Route path="/admin" element={<AdminRoute><DashboardLayout /></AdminRoute>}>
             <Route index element={<AdminDashboard />} /> 
-            <Route path="user/:userId" element={<AdminUserDetail />} /> {/* <-- NEW DETAIL ROUTE */}
+            <Route path="user/:userId" element={<AdminUserDetail />} />
             <Route path="*" element={<Navigate to="/admin" replace />} />
           </Route>
           
-          {/* Catch All Unknown Routes */}
+      
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>

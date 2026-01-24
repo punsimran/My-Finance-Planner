@@ -1,14 +1,11 @@
-# backend/authentication/ml_service.py
-
 import os
 import joblib
 import pandas as pd
-# Add these imports:
+
 from django.conf import settings
 from transactions.models import Transaction # Needed for the ORM features in the views.py
 
-# Define paths to model artifacts using BASE_DIR from settings
-# NOTE: BASE_DIR is typically the directory containing manage.py (i.e., 'backend/')
+
 ML_MODELS_DIR = os.path.join(settings.BASE_DIR, 'ml_models')
 
 MODEL_PATH = os.path.join(ML_MODELS_DIR, 'budget_regressor.pkl')
@@ -32,7 +29,7 @@ def load_ml_models():
         except Exception as e:
             print(f"❌ ERROR loading ML artifacts: {e}")
 
-# Load models immediately when this file is imported
+
 load_ml_models()
 
 

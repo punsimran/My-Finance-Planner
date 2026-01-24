@@ -17,7 +17,7 @@ class Transaction(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, null=True)
 
     class Meta:
-        ordering = ['-date', '-created_at'] # Newest first
+        ordering = ['-date', '-created_at']
 
     def __str__(self):
         return f"{self.description} - {self.amount}"
@@ -36,13 +36,13 @@ class Goal(models.Model):
 
 class BudgetLimit(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='budget_limits')
-    category = models.CharField(max_length=50) # e.g., Food, Shopping
+    category = models.CharField(max_length=50)
     limit_amount = models.DecimalField(max_digits=10, decimal_places=2)
-    # Track the month and year this limit applies to (e.g., 2024-05-01)
+
     period_start = models.DateField() 
     
     class Meta:
-        # Ensure a user can only set ONE limit for a category in a specific month
+
         unique_together = ('user', 'category', 'period_start')
         ordering = ['period_start', 'category']
 
